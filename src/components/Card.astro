@@ -1,21 +1,25 @@
 ---
 interface Props {
-  title: string;
-  body: string;
-  href: string;
+  name: string;
+  category: string;
+  price: string;
+  urlImg: string;
 }
+import { Image } from 'astro:assets';
 
-const { href, title, body } = Astro.props;
+const { name, category, price, urlImg } = Astro.props;
+import imgexa from '../assets/images/image-baklava-desktop.jpg';
 ---
 
-<li>
-  <a href={href}>
-    <h2>
-      {title}
-      <span>&rarr;</span>
-    </h2>
-    <p>
-      {body}
-    </p>
-  </a>
+<li class="flex flex-col w-72">
+  <div class="flex flex-col items-center mb-4">
+    <Image src={imgexa} alt="hola" class="rounded-xl mb-[-30px]" />
+    <div class="bg-Rose-50 rounded-full w-48 text-center p-4 border-Rose-500 text-Rose-500 border-2 text-base font-bold">
+      Add to Cart
+    </div>
+  </div>
+
+  <h3 class="text-Rose-400">{category}</h3>
+  <h2 class="text-Rose-900 text-xl font-bold">{name}</h2>
+  <span class="font-bold text-Red">{price}</span>
 </li>
