@@ -1,13 +1,16 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
+import cart from '../assets/images/illustration-empty-cart.svg';
+import CartDetails from '../components/CartDetails.astro';
 ---
 
 <Layout title="Desserts">
-  <main class="flex p-16">
-    <div class="flex flex-col w-[70%]">
+  <main class="flex flex-col md:flex-row md:gap-0 gap-16">
+    <div class="flex flex-col">
       <h1 class="font-bold text-4xl mb-8 text-Rose-900">Desserts</h1>
-      <ul class="flex gap-8 flex-wrap">
+      <ul class="flex gap-6 flex-wrap">
         <Card urlImg="hola" name="choloca" category="brownie" price="2.80" />
         <Card urlImg="hola" name="choloca" category="brownie" price="2.80" />
         <Card urlImg="hola" name="choloca" category="brownie" price="2.80" />
@@ -18,9 +21,6 @@ import Card from '../components/Card.astro';
         <Card urlImg="hola" name="choloca" category="brownie" price="2.80" />
       </ul>
     </div>
-    <div class="w-[30%] bg-Rose-50 py-5 px-8 h-96">
-      <h2 class="text-Red font-bold text-2xl">Your Cart (0)</h2>
-      <p>Your added items will appear here</p>
-    </div>
+    <CartDetails />
   </main>
 </Layout>
