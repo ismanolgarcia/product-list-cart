@@ -2,19 +2,38 @@
 interface Props {
   name: string;
   category: string;
-  price: string;
-  urlImg: string;
+  price: number;
+  urlImg: any;
 }
 import { Image } from 'astro:assets';
-
 const { name, category, price, urlImg } = Astro.props;
-import imgexa from '../assets/images/image-baklava-desktop.jpg';
 import cart from '../assets/images/icon-add-to-cart.svg';
 ---
 
 <li class="flex flex-col w-64">
   <div class="flex flex-col items-center mb-4">
-    <Image src={imgexa} alt="hola" class="rounded-xl mb-[-30px]" />
+    <picture>
+      <source
+        srcset={urlImg.desktop}
+        media="(min-width: 1024px)"
+        class="rounded-xl mb-[-30px]"
+      />
+      <source
+        srcset={urlImg.tablet}
+        media="(min-width: 768px)"
+        class="rounded-xl mb-[-30px]"
+      />
+      <source
+        srcset={urlImg.mobile}
+        media="(max-width: 767px)"
+        class="rounded-xl mb-[-30px]"
+      />
+      <img
+        src={urlImg.desktop}
+        alt={name}
+        class="w-full object-cover rounded-xl mb-[-30px]"
+      />
+    </picture>
     <div
       class="flex justify-center gap-2 bg-Rose-50 rounded-full w-48 text-center p-4 border-Rose-500 text-Rose-500 border-2 text-base font-bold hover:border-Red hover:text-Red cursor-pointer"
     >
@@ -24,6 +43,6 @@ import cart from '../assets/images/icon-add-to-cart.svg';
   </div>
 
   <h3 class="text-Rose-400">{category}</h3>
-  <h2 class="text-Rose-900 text-xl font-bold">{name}</h2>
-  <span class="font-bold text-Red">{price}</span>
+  <h2 class="text-Rose-900 text-lg font-bold">{name}</h2>
+  <span class="font-bold text-Red">${price.toFixed(2)}</span>
 </li>
